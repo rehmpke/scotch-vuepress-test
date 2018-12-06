@@ -14,7 +14,7 @@ What follows is a brain dump documenting my approach to using Jekyll, how that�
 
 ## Converting and Restructuring Content
 
-To learn how Jekyll works I set off on a journey to turn a [Wordpress](https://wordpress.org/) powered site into the static version you see now. I read several tutorials, learned Kramdown[1](https://mademistakes.com/articles/using-jekyll-2016/#fn:kramdown) and [Liquid](https://docs.shopify.com/themes/liquid-documentation/basics), [blogged about the process](https://mademistakes.com/articles/going-static/), and eventually ended up with something I was happy with — all without a database or CMS.
+To learn how Jekyll works I set off on a journey to turn a [Wordpress](https://wordpress.org/) powered site into the static version you see now. I read several tutorials, learned Kramdown`[1]`(https://mademistakes.com/articles/using-jekyll-2016/#fn:kramdown) and [Liquid](https://docs.shopify.com/themes/liquid-documentation/basics), [blogged about the process](https://mademistakes.com/articles/going-static/), and eventually ended up with something I was happy with — all without a database or CMS.
 
 ### Posts for All the Things
 
@@ -26,7 +26,7 @@ A drawback I hit with this method was reliable pagination between posts. Jekyll 
 
 For example, when reading a post in the `articles` category, I’d expect the **NEXT →** link to show the next article post. Instead, something from the `portfolio` category came up because it was the next item in the `site.posts` array. With plugins or a messy bit of Liquid you could probably filter on the current category and get around this, but I never took it that far.
 
-Details like this drive me bonkers, so instead I opted for a **You May Also Enjoy** module that displays three related posts (with the help of a plugin[2](https://mademistakes.com/articles/using-jekyll-2016/#fn:related-posts)) at the bottom of the page. In my eyes, this provided a better reading experience even if my site took longer to generate at build…
+Details like this drive me bonkers, so instead I opted for a **You May Also Enjoy** module that displays three related posts (with the help of a plugin`[2]`(https://mademistakes.com/articles/using-jekyll-2016/#fn:related-posts)) at the bottom of the page. In my eyes, this provided a better reading experience even if my site took longer to generate at build…
 
 |Jekyll version|Build time|Posts||
 |---|---|---|---|
@@ -35,11 +35,11 @@ Details like this drive me bonkers, so instead I opted for a **You May Also Enjo
 
 It’s no coincidence that my build times went from under a second to a few minutes as I hit almost 1,000 posts. Moving to solid-state drives and reducing the amount of Liquid for loops in my layouts and includes has helped — but I still have ways to go if I want to speed things up further.
 
-The new **--incremental regeneration** feature will eventually play a big role in speeding things up. On a default `jekyll` new site it works really well, but unfortunately I haven’t had much luck getting it to play nicely with the plugins I use. Work currently being done on this feature seems like its [going in the right direction](https://github.com/jekyll/jekyll/pull/4269), so I’m sure in time things will sort out.
+The new **`--incremental` regeneration** feature will eventually play a big role in speeding things up. On a default `jekyll new` site it works really well, but unfortunately I haven’t had much luck getting it to play nicely with the plugins I use. Work currently being done on this feature seems like its [going in the right direction](https://github.com/jekyll/jekyll/pull/4269), so I’m sure in time things will sort out.
 
-For now the best I can do is use the new **Liquid Profiler**[3](https://mademistakes.com/articles/using-jekyll-2016/#fn:profiler) to identify problematic bits and simplify where I can. I add new content so infrequently that it really isn’t a bother waiting 2 minutes for a build to finish, but damn it would be nice to hit < 1s again!
+For now the best I can do is use the new **Liquid Profiler**`[3]`(https://mademistakes.com/articles/using-jekyll-2016/#fn:profiler) to identify problematic bits and simplify where I can. I add new content so infrequently that it really isn’t a bother waiting 2 minutes for a build to finish, but damn it would be nice to hit < 1s again!
 
-![](My%20Jekyll%20Development%20process.resources/E3358A27-EBB0-4FEA-B37E-CC21304FCDBF.png)
+![](/My%20Jekyll%20Development%20process.resources/E3358A27-EBB0-4FEA-B37E-CC21304FCDBF.png)
 
 jekyll build --profile in action.
 
@@ -106,7 +106,7 @@ Installing Ruby, Bundler, and Ruby Gems were all new to me four years ago. Runni
 I eventually learned to embrace [Bundler](http://bundler.io/) from the advice of numerous Stack Overflow threads and GitHub issues. Since Bundler is the official way to install Jekyll it wasn’t that big of a leap for me to start using a `Gemfile` to manage all dependencies. To do that:
 
 1. Run `bundle init` to create an empty `Gemfile`
-2. Add gem `'jekyll'` and any other gems to the `Gemfile`.
+1. Add gem `'jekyll'` and any other gems to the `Gemfile`.
 
         # Made Mistakes example Gemfile
 
@@ -126,25 +126,27 @@ I eventually learned to embrace [Bundler](http://bundler.io/) from the advice of
         'jekyll-assets' github: 'jekyll/jekyll-assets'
         'jekyll-sitemap' github: 'jekyll/jekyll-sitemap'
 
-Now when running bundle `install` each of the gems specified above are installed and a `Gemfile.lock` is created listing all of the dependencies. Prepending all Jekyll commands with bundle `exec` ensures only the versions in `Gemfile.lock` are executed helping to mitigate conflicts.
+Now when running `bundle install` each of the gems specified above are installed and a `Gemfile.lock` is created listing all of the dependencies. Prepending all Jekyll commands with bundle `exec` ensures only the versions in `Gemfile.lock` are executed helping to mitigate conflicts.
 
-Committing both of these Gemfiles to a git repository also makes it easy to revert back if a gem update goes bad. Sure it’s a few more characters to type, but the headaches it solves are more than worth it. You can even write shortcut tasks with Rakefiles to eliminate the extra keystrokes — if automation is your thing (more on that below).
+Committing both of these Gemfiles to a git repository also makes it easy to revert back if a `gem update` goes bad. Sure it’s a few more characters to type, but the headaches it solves are more than worth it. You can even write shortcut tasks with Rakefiles to eliminate the extra keystrokes — if automation is your thing (more on that below).
 
 ### Environments and Configurations
 
 With the introduction of asset related plugins and various other build steps, I eventually settled on two Jekyll configuration files. A default `_config.yml` with production settings and `_config.dev.yml` for development specific ones.
 
-The cool thing is you can chain together these configuration files, overriding settings from the previous. For example, when building locally I’d like `{{ site.url }\}` and `{{ site.disqus-shortname }\}` to default to their development equivalents for testing purposes. Adding the following values to `_config.dev.yml` overrides the ones in `_config.yml`:
+The cool thing is you can chain together these configuration files, overriding settings from the previous. For example, when building locally I’d like ```{{ site.url }}``` and ```{{ site.disqus-shortname }}``` to default to their development equivalents for testing purposes. Adding the following values to `_config.dev.yml` overrides the ones in `_config.yml`:
 
 
-The cool thing is you can chain together these configuration files, overriding settings from the previous. For example, when building locally I’d like `{{ site.url }}` and `{{ site.disqus-shortname }}` to default to their development equivalents for testing purposes. Adding the following values to `_config.dev.yml` overrides the ones in `_config.yml`:
+The cool thing is you can chain together these configuration files, overriding settings from the previous. For example, when building locally I’d like ```{{ site.url }}``` and ```{{ site.disqus-shortname }}``` to default to their development equivalents for testing purposes. Adding the following values to `_config.dev.yml` overrides the ones in `_config.yml`:
 
     url: http://localhost:4000
     disqus-shortname: mmistakes-dev
 
 A development server can then be fired up with the relevant settings using…
 
-    bundle jekyll serve --config \_config.yml,\_config.dev.yml
+```bash
+bundle jekyll serve --config \_config.yml,\_config.dev.yml
+```
 
 Going one step further a Jekyll environment can be specified as well. By default Jekyll runs in development with a value of `JEKYLL_ENV=development`. The [compress.html](https://github.com/mmistakes/made-mistakes-jekyll/blob/master/_layouts/compress.html) layout and [Jekyll-Assets](https://github.com/jekyll/jekyll-assets) plugin both make use of this triggering HTML, CSS, and JavaScript compression with the following command:
 
