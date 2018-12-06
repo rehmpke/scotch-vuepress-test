@@ -155,7 +155,7 @@ Going one step further a Jekyll environment can be specified as well. By default
 > On Windows I had issues minifying when JEKYLL_ENV=production bundle exec jekyll build silently failed. Instead, I found that the [SET](http://ss64.com/nt/set.html) command had to be used to assign environment variables.
 
     JEKYLL_ENVproduction
-    
+
 #### Other Configurations
 
 As mentioned earlier I have a moderately sized Jekyll site at 991 posts. Combine that fact with an /images/ directory that is close to 2 GB, a liberal use of Liquid for loops, and generator plugins like [Jekyll Archives](https://github.com/jekyll/jekyll-archives) — you get site builds that are far from instant. And in the rare cases when I run `jekyll clean` to flush caches and everything in `/\_site/`, builds can take over 15 minutes as the [Jekyll Picture Tag](https://github.com/robwierzbowski/jekyll-picture-tag) plugin regenerates appropriately sized hero images for every posts. Yikes!
@@ -187,11 +187,11 @@ These days I use Grunt solely for optimizing images and `SVGs` with the followin
 
 When I add new `JPEG` or `PNG` assets to `/images/` I use the following command to optimize them — reducing their file size and speeding up page loads.
 
-    $ grunt images
+    grunt images
 
 On the SVG side of things any files added to /\_svg/ are optimized and merged into a [single sprite map](https://css-tricks.com/svg-sprites-use-better-icon-fonts/) with the following command:
 
-grunt svg
+    grunt svg
 
 In combination with both of these tasks I use the [grunt-newer](https://www.npmjs.com/package/grunt-newer) plugin. This dramatically speeds up things as only new and modified files are processed.
 
@@ -524,7 +524,7 @@ Related posts are dynamically pulled from site.related_posts and augmented with 
 
 </div>
 
-![](My%20Jekyll%20Development%20process.resources/975E6700-5F9F-4C9B-9852-4DDE72819FFF.jpg)
+![](/My%20Jekyll%20Development%20process.resources/975E6700-5F9F-4C9B-9852-4DDE72819FFF.jpg)
 
 Related posts only appear if there are three or more matches based on post.tags.
 
@@ -976,9 +976,9 @@ If you want to learn more about this technique be sure to check out Tuan Anh’s
 
 Maybe not 100% complete, but this is certainly the majority of techniques I’ve picked up using Jekyll over the years. What keeps me coming back is its flexibility — there’s no shortage of ways to approach a problem and always new things to learn. Browse the threads on [Jekyll Talk](https://talk.jekyllrb.com/) on any given day and you’ll see what I mean ![](My%20Jekyll%20Development%20process.resources/1f604.png).
 
-1.  [Kramdown](http://kramdown.gettalong.org/syntax.html) is a Markdown converter that supports features currently unavailable in plain Markdown. Things like automatically generating a table of contents from headlines, special attributes, and more. [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:kramdown)
-2.  [jekyll-tagging-related_posts](https://github.com/toshimaru/jekyll-tagging-related_posts) - replaces Jekyll’s related_posts function to use tags to calculate better post relationships. [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:related-posts)
-3.  The profiler can be enabled with the --profile flag (eg. jekyll build --profile). [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:profiler)
-4.  Less is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions to make it more maintainable. [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:less)
-5.  Output the source of an asset using asset_source Jekyll-Assets tag. Example: asset_sourcecritical.css [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:assets-tag-example)
-6.  Example: Data file /\_data/foo.yml is accessible via site.data.foo. [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:data-file)
+1. [Kramdown](http://kramdown.gettalong.org/syntax.html) is a Markdown converter that supports features currently unavailable in plain Markdown. Things like automatically generating a table of contents from headlines, special attributes, and more. [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:kramdown)
+1. [jekyll-tagging-related_posts](https://github.com/toshimaru/jekyll-tagging-related_posts) - replaces Jekyll’s related_posts function to use tags to calculate better post relationships. [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:related-posts)
+1. The profiler can be enabled with the --profile flag (eg. jekyll build --profile). [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:profiler)
+1. Less is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions to make it more maintainable. [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:less)
+1. Output the source of an asset using asset_source Jekyll-Assets tag. Example: asset_sourcecritical.css [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:assets-tag-example)
+1. Example: Data file /\_data/foo.yml is accessible via site.data.foo. [↩](https://mademistakes.com/articles/using-jekyll-2016/#fnref:data-file)
